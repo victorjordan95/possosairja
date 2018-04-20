@@ -1,0 +1,116 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Helvetica', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    min-width: 320px;
+}
+
+main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #383838;
+}
+
+.hidden {
+    display: none;
+}
+
+.alert-block {
+    font-size: 14px;
+    color: #424242;
+    margin: 8px 0 0;
+}
+
+/* ====== Input box ===== */
+
+.input-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+    width: 25%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin: 36px auto;
+}
+
+.input-box label {
+    color: #383838;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.input-box input {
+    border-radius: 5px;
+    border: 0px solid #424242;
+    -webkit-box-shadow: 0 0 5px 0px #a0a0a0;
+    box-shadow: 0 0 5px 0px #a0a0a0;
+    height: 40px;
+    margin: 4px 0 24px;
+    padding: 16px;
+    width: 100%;
+    min-width: 100%;
+}
+
+.input-box button {
+    background-color: #103267;
+    border: 1px solid #102F5C;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 0px #a0a0a0;
+    box-shadow: 0 0 5px 0px #a0a0a0;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    font-weight: bold;
+    -webkit-transition: all ease 0.7s;
+    transition: all ease 0.7s;
+    width: 100%;
+}
+
+.input-box button:hover {
+    background-color: #0B2549;
+    ;
+}
+
+#saida {
+    background-color: #AED581;
+    border: #8EB65E 2px solid;
+    border-radius: 5px;
+    padding: 16px;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}

@@ -33,13 +33,31 @@ main {
     text-align: center;
 }
 
+footer {
+    bottom: 0;
+    color: #424242;
+    display: block;
+    margin: 8px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+footer a {
+    color: #424242;
+}
+
 h1 {
     font-size: 1.5em;
     color: #383838;
 }
 
 .hidden {
-    display: none;
+    display: none!important;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
 }
 
 .alert-block {
@@ -58,12 +76,28 @@ h1 {
     -webkit-box-direction: normal;
     -ms-flex-flow: column wrap;
     flex-flow: column wrap;
-    width: 25%;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     text-align: center;
     margin: 36px auto;
+}
+
+@media only screen and (min-width: 768px) {
+    .input-box {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .input-box {
+        width: 50%;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .input-box label {
@@ -73,7 +107,7 @@ h1 {
     text-align: left;
 }
 
-.input-box input {
+.input-box input[type='time'] {
     border-radius: 5px;
     border: 0px solid #424242;
     -webkit-box-shadow: 0 0 5px 0px #a0a0a0;
@@ -83,6 +117,11 @@ h1 {
     padding: 16px;
     width: 100%;
     min-width: 100%;
+}
+
+.input-box input[type='checkbox'] {
+    align-self: center;
+    margin: 0 16px 0 0;
 }
 
 .input-box button {
@@ -95,6 +134,7 @@ h1 {
     cursor: pointer;
     height: 40px;
     font-weight: bold;
+    margin: 16px 0;
     -webkit-transition: all ease 0.7s;
     transition: all ease 0.7s;
     width: 100%;
@@ -102,15 +142,43 @@ h1 {
 
 .input-box button:hover {
     background-color: #0B2549;
-    ;
 }
 
-#saida {
-    background-color: #AED581;
-    border: #8EB65E 2px solid;
+.alert {
+    align-self: center;
     border-radius: 5px;
-    padding: 16px;
+    box-shadow: 0 0px 10px 0px #a2a2a2;
+    color: #fff;
+    margin: 8px 0;
+    padding: 24px;
     position: absolute;
-    right: 24px;
-    top: 24px;
+    top: 0;
+
+}
+
+@media only screen and (min-width: 768px) {
+    .alert {
+        margin: 0px;
+        right: 24px;
+        top: 24px;
+    }
+}
+
+.alert-success {
+    background-color: #AED581;
+}
+
+.alert-error {
+    background-color: #b71c1c;
+}
+
+.close-alert {
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    z-index: 3;
 }

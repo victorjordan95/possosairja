@@ -21,9 +21,15 @@
         </div>
 
         <div class="form-group mb-16">
+            <input type="checkbox" id="add24" checked="true">
+            <label for="add24">Adicionar 24 minutos?</label>
+        </div>
+
+        <div class="form-group mb-16">
             <input type="checkbox" id="isEstag">
             <label for="isEstag">É estagiário?</label>
         </div>
+
 
         <div class="form-group mb-16">
             <input type="checkbox" id="horaSobra">
@@ -43,42 +49,44 @@
 })();
 
 function calc() {
+
+    const user = {
+        he: document.getElementById("horaEntrada").value,
+        a1: document.getElementById("horaAlmoco1").value,
+        a2: document.getElementById("horaAlmoco2").value,
+        hs: document.getElementById("valorHoraSobrando").value,
+        isEstagiario: document.getElementById('isEstag').checked,
+        add24: document.getElementById('add24').checked
+    };
     
-    let he = document.getElementById("horaEntrada").value;
-    let a1 = document.getElementById("horaAlmoco1").value;
-    let a2 = document.getElementById("horaAlmoco2").value;
-    let hs = document.getElementById("valorHoraSobrando").value;
-    const isEstagiario = document.getElementById('isEstag').checked;
+    user.a1 = moment(user.a1, 'HH:mm');
+    user.a2 = moment(user.a2, 'HH:mm');
 
-    a1 = moment(a1, 'HH:mm');
-    a2 = moment(a2, 'HH:mm');
+    user.totalAlmoco = user.a2.diff(user.a1);
+    user.totalAlmoco = (user.totalAlmoco / 60 / 1000);
 
-    let totalAlmoco = a2.diff(a1);
-    totalAlmoco = (totalAlmoco / 60 / 1000);
-
-    if (hs === "") {
+    if (user.hs === "") {
         var horarioFinal = 
-            moment(he, 'HH:mm')
-                .add(isEstagiario ? 6 : 8, 'hours')
-                .add(isEstagiario ? 0 : 24, 'minutes').add(totalAlmoco, 'minutes');
+            moment(user.he, 'HH:mm')
+                .add(user.isEstagiario ? 6 : 8, 'hours')
+                .add(user.isEstagiario || !user.add24 ? 0 : 24, 'minutes').add(user.totalAlmoco, 'minutes');
         showHour(horarioFinal);
     } else {
-        var minutes = parseToMinute(hs);
+        var minutes = parseToMinute(user.hs);
         if (minutes >= 480) {
             showError();
         } else {
             var horarioFinal = 
-                moment(he, 'HH:mm')
-                    .add(isEstagiario ? 6 : 8, 'hours')
-                    .add(isEstagiario ? 0 : 24, 'minutes').add(totalAlmoco, 'minutes');
+                moment(user.he, 'HH:mm')
+                    .add(user.isEstagiario ? 6 : 8, 'hours')
+                    .add(user.isEstagiario || !user.add24 ? 0 : 24, 'minutes').add(user.totalAlmoco, 'minutes');
             showHour(horarioFinal);
         }
     }
 
 };
 
-var input = document.getElementById("horaAlmoco2");
-input.addEventListener("keyup", function (event) {
+document.getElementById("horaAlmoco2").addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         calc();
@@ -97,7 +105,7 @@ function changeHandler() {
         let inputHS = document.getElementById("valorHoraSobrando").value = '';
         document.getElementById('js-horaSobrando').classList.add('hidden');
     }
-}
+};
 
 function showHour(horarioFinal) {
     var saida = document.getElementById("saida");
@@ -131,17 +139,19 @@ function showError() {
         Por que você veio trabalhar?
     `;
 
-    var closeAlertBtn = document.getElementById('js-closeAlert');
-    closeAlertBtn.addEventListener("click", function () {
+    document.getElementById('js-closeAlert').addEventListener("click", function () {
         var saida = document.getElementById("saida");
         saida.classList.add("hidden");
         saida.classList.remove("alert-error");
     });
+
+    setTimeout(() => {
+        saida.classList.add("hidden");
+    }, 5000);
 };
 
 function parseToMinute(hs) {
-    var hms = hs;
-    var a = hms.split(':');
+    var a = hs.split(':');
     var minutes = (+a[0]) * 60 + (+a[1]);
     return minutes
 };
